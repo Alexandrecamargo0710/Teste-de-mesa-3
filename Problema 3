@@ -11,12 +11,12 @@ int meses = int.Parse(Console.ReadLine());
 double valorTotal = valor;
 double saque = 0;
 
-Console.WriteLine("|     VALOR    | JUROS  | MES | RENDIMENTO   |    TOTAL     |    SAQUE    |");
+Console.WriteLine("|     VALOR    | JUROS  | MES | RENDIMENTO   |    TOTAL     |");
 
 for (int i = 1; i <= meses; i++)
 {
     // Aplicando juros compostos mês a mês
     valorTotal = valorTotal * (1 + juros);
 
-    Console.WriteLine($"| {valor,12:C} | {juros,6:P} | {i,3} | {valorTotal - valor,12:C} | {valorTotal,12:C} | {saque,10:C} |");
+    Console.WriteLine($"| {valor,12:C} | {juros,6:P} | {i,3} | {valorTotal - valor,12:C} | {valorTotal,12:C} |");
 }
