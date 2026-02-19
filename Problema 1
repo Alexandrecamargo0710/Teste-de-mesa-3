@@ -1,0 +1,32 @@
+using System.Numerics;
+
+DateTime inicio = DateTime.Today;
+DateTime fim = inicio.AddMonths(8).AddDays(10);
+
+Console.WriteLine("Selecione uma opção entre 1 a 3 de entrada para o cálculo");
+Console.WriteLine("1. R$ 1000\n2. R$ 5500\n3. R$ 12000");
+double OpçaoEntrada = double.Parse(Console.ReadLine());
+double OpçaoE = OpçaoEntrada switch
+{
+    1 => 1000,
+    2 => 5500,
+    3 => 12000,
+};
+
+Console.WriteLine("Selecione uma opção entre 1 a 3 de taxa para o cálculo");
+Console.WriteLine("1. 3%\n2. 2,48%\n3. 2%");
+double OpçaoTaxa = double.Parse(Console.ReadLine());
+double OpçaoT = OpçaoTaxa switch
+{
+    1 => 0.03,
+    2 => 0.0248,
+    3 => 0.02,
+};
+
+double Total = OpçaoE * Math.Pow(1 + OpçaoT, 8 + (10.0 / 30));
+
+Console.WriteLine("Em um período de 8 meses e 10 dias...\n");
+
+Console.WriteLine($"--------------------------------\nData início: {inicio}\nData final: {fim}\n--------------------------------");
+Console.WriteLine("| VALOR ENTRADA | TAXA DE JUROS |      PERIODO     | VALOR TOTAL |\n------------------------------------------------------------------");
+Console.WriteLine($"|    R$ {OpçaoE}    |      {OpçaoT * 100}%      | 8 meses e 10 dias | R$ {Total:F2} |\n------------------------------------------------------------------");
