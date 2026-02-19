@@ -1,0 +1,45 @@
+Console.Write("Digite um valor em R$ para investir: ");
+double valor = double.Parse(Console.ReadLine());
+
+Console.Write("Digite uma taxa de juros (%): ");
+double taxa = double.Parse(Console.ReadLine());
+double juros = taxa / 100;
+
+Console.Write("Digite um número de meses: ");
+int meses = int.Parse(Console.ReadLine());
+
+double valorTotal = valor;
+double saque = 0;
+
+Console.WriteLine("|     VALOR    | JUROS  | MES | RENDIMENTO   |    TOTAL     |    SAQUE    |");
+
+for (int i = 1; i <= meses; i++)
+{
+    // Aplicando juros compostos mês a mês
+    valorTotal = valorTotal * (1 + juros);
+
+    Console.WriteLine($"| {valor,12:C} | {juros,6:P} | {i,3} | {valorTotal - valor,12:C} | {valorTotal,12:C} | {saque,10:C} |");
+
+    if (i == 5)
+    {
+        Console.Write("Deseja realizar um saque agora? (s/n): ");
+        string resposta = Console.ReadLine();
+
+        if (resposta.ToLower() == "s")
+        {
+            Console.Write("Digite o valor do saque: ");
+            double retirar = double.Parse(Console.ReadLine());
+
+            if (retirar > valorTotal - valor)
+            {
+                Console.WriteLine("Valor do saque excede o rendimento disponível. Saque não realizado.");
+            }
+            else
+            {
+                valorTotal -= retirar;
+                saque += retirar;
+                Console.WriteLine($"Valor após o saque: {valorTotal:C}\nRecalculando para o próximo mês...");
+            }
+        }
+    }
+}
